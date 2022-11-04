@@ -62,6 +62,9 @@ export function setSpecialForLocalType(updates: StateUpdates) {
 		case 'files':
 			set(updates, 'field.meta.special', [localType]);
 			break;
+		case 'fieldref':
+			set(updates, 'field.meta.special', ['alias', 'fieldref']);
+			break;
 		case 'presentation':
 			set(updates, 'field.meta.special', ['alias', 'no-data']);
 			break;

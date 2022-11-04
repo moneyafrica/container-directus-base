@@ -58,7 +58,8 @@ export function useFieldTree(
 			.filter(
 				(field) =>
 					field.meta?.special?.includes('group') ||
-					(!field.meta?.special?.includes('alias') && !field.meta?.special?.includes('no-data'))
+					(!field.meta?.special?.includes('alias') && !field.meta?.special?.includes('no-data')) ||
+					(field.meta?.special?.includes('alias') && field.meta?.special?.includes('fieldref'))
 			)
 			.filter((field) => filter(field, parent));
 

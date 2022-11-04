@@ -16,7 +16,9 @@ export function getLocalTypeForField(collection: string, field: string): LocalTy
 			if (fieldInfo.meta?.special?.includes('group')) {
 				return 'group';
 			}
-
+			if (fieldInfo.meta?.special?.includes('fieldref')) {
+				return 'fieldref';
+			}
 			return 'presentation';
 		}
 

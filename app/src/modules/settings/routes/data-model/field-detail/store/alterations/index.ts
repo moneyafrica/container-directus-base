@@ -9,3 +9,5 @@ export * as o2m from './o2m';
 export * as presentation from './presentation';
 export * as standard from './standard';
 export * as translations from './translations';
+
+export * as fieldref from './fieldref';

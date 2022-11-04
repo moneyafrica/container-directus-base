@@ -2,7 +2,7 @@ ARG NODE_VERSION=16-alpine
 
 FROM node:${NODE_VERSION} as builder
 
-ARG TARGETPLATFORM
+ARG TARGETPLATFORM=linux/amd64
 
 WORKDIR /directus
 COPY /dist .
@@ -19,10 +19,8 @@ RUN rm *.tgz
 # Directus image
 FROM node:${NODE_VERSION}
 
-ARG VERSION
 ARG REPOSITORY=directus/directus
 
-LABEL directus.version="${VERSION}"
 
 # Default environment variables
 # (see https://docs.directus.io/reference/environment-variables/)
