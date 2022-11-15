@@ -37,7 +37,8 @@
 					:interface-options="header.field.interfaceOptions"
 					:type="header.field.type"
 					:collection="header.field.collection"
-					:field="header.value"
+				        :field="header.value"
+					:primaryKey="get(item, 'id')"
 				/>
 			</template>
 
