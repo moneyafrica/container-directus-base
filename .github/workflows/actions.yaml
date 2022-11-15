@@ -1,0 +1,50 @@
+name: DockerBuildPush
+
+on:
+  push:
+    branches:
+      - 'other'
+      
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  LPASS_PASSWORD: ${{ secrets.LPASS_PASSWORD }}
+  REGISTRY: gcr.io
+  IMAGE_NAME: m254-registry-f3e3/directus-base
+
+jobs:
+  DockerBuildPush:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Secrets
+        run: |
+          mkdir -p /home/runner/.local/share/lpass
+          sudo apt install lastpass-cli
+          echo $LPASS_PASSWORD | LPASS_DISABLE_PINENTRY=1 lpass login money.africa.org@gmail.com
+          echo REGISTRY_SA_KEY=$(lpass show --field private_key tech/registry_service_account) >> $GITHUB_ENV
+          
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Get Version
+        run: echo VERSION=$(cat version  | tr '\n' ' ') >> $GITHUB_ENV
+
+      - name: Tag Repository
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ env.VERSION }}
+          release_name: Release ${{ env.VERSION }}
+          body: "Automated Release ${{ env.VERSION }}"
+            
+      - name: Authenticate GCP Registry
+        run: |
+          export REGISTRY_SA_KEY_DEC=$(echo $REGISTRY_SA_KEY | base64 --decode)
+          echo $REGISTRY_SA_KEY_DEC | docker login https://gcr.io -u _json_key --password-stdin 
+        
+      - name: Build & Push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
