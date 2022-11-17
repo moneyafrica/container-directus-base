@@ -590,6 +590,14 @@ export class FieldsService {
 			}
 		} else if (field.type === 'string') {
 			column = table.string(field.field, field.schema?.max_length ?? undefined);
+		} else if (field.type === 'text') {
+		        if ((field.schema?.max_length ?? 1) > 16777215) {
+		                column = table.text(field.field, 'longtext');
+			} else if ((field.schema?.max_length ?? 1) > 65535) {
+		                column = table.text(field.field, 'mediumtext');
+			} else {
+		                column = table.text(field.field);
+			}
 		} else if (['float', 'decimal'].includes(field.type)) {
 			const type = field.type as 'float' | 'decimal';
 			column = table[type](field.field, field.schema?.numeric_precision ?? 10, field.schema?.numeric_scale ?? 5);
