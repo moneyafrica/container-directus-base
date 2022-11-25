@@ -298,6 +298,8 @@ export default defineComponent({
 			'modified_by',
 			'modified_on',
 			'last_access',
+			'description',
+			'tags',
 		];
 
 		const fieldsFiltered = computed(() => {

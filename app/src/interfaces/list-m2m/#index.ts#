@@ -1,19 +1,19 @@
 import { defineInterface } from '@directus/shared/utils';
-import InterfaceListO2M from './list-o2m.vue';
+import InterfaceListM2M from './list-m2m.vue';
 import PreviewSVG from './preview.svg?raw';
 
 export default defineInterface({
-	id: 'list-o2m',
-	name: '$t:interfaces.list-o2m.one-to-many',
-	description: '$t:interfaces.list-o2m.description',
-	icon: 'arrow_right_alt',
-	component: InterfaceListO2M,
-	types: ['alias'],
-	localTypes: ['o2m'],
-	group: 'relational',
+	id: 'list-m2m',
+	name: '$t:interfaces.list-m2m.many-to-many',
+	description: '$t:interfaces.list-m2m.description',
+	icon: 'note_add',
+	component: InterfaceListM2M,
 	relational: true,
-	options: ({ relations, field: { meta } }) => {
-		const collection = relations.o2m?.collection;
+	types: ['alias'],
+	localTypes: ['m2m'],
+	group: 'relational',
+	options: ({ editing, relations, field: { meta } }) => {
+		const { collection, related_collection } = relations.m2o ?? {};
 		const options = meta?.options ?? {};
 
 		const tableOptions = [
@@ -47,13 +47,21 @@ export default defineInterface({
 			{
 				field: 'fields',
 				name: '$t:columns',
-				meta: {
-					interface: 'system-fields',
-					options: {
-						collectionName: collection,
-					},
-					width: 'full',
-				},
+				meta:
+					editing === '+'
+						? {
+								interface: 'presentation-notice',
+								options: {
+									text: '$t:interfaces.list-m2m.columns_configure_notice',
+								},
+						  }
+						: {
+								interface: 'system-fields',
+								options: {
+									collectionName: collection,
+								},
+								width: 'full',
+						  },
 			},
 		];
 
@@ -61,13 +69,20 @@ export default defineInterface({
 			{
 				field: 'template',
 				name: '$t:display_template',
-				meta: {
-					interface: 'system-display-template',
-					options: {
-						collectionName: collection,
-					},
-					width: 'full',
-				},
+				meta:
+					editing === '+'
+						? {
+								interface: 'presentation-notice',
+								options: {
+									text: '$t:interfaces.list-m2m.display_template_configure_notice',
+								},
+						  }
+						: {
+								interface: 'system-display-template',
+								options: {
+									collectionName: collection,
+								},
+						  },
 			},
 		];
 
@@ -137,13 +152,49 @@ export default defineInterface({
 				},
 			},
 			{
+				field: 'junctionFieldLocation',
+				name: '$t:junction_field_location',
+				type: 'string',
+				schema: {
+					default_value: 'bottom',
+				},
+				meta: {
+					interface: 'select-dropdown',
+					options: {
+						choices: [
+							{
+								value: 'top',
+								text: '$t:top',
+							},
+							{
+								value: 'bottom',
+								text: '$t:bottom',
+							},
+						],
+					},
+					width: 'half',
+				},
+			},
+
+			{
+				field: 'allowDuplicates',
+				name: '$t:allow_duplicates',
+				schema: {
+					default_value: false,
+				},
+				meta: {
+					interface: 'boolean',
+					width: 'half',
+				},
+			},
+			{
 				field: 'filter',
 				name: '$t:filter',
 				type: 'json',
 				meta: {
 					interface: 'system-filter',
 					options: {
-						collectionName: collection,
+						collectionName: related_collection,
 					},
 					conditions: [
 						{

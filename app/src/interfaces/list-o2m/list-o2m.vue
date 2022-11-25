@@ -234,7 +234,7 @@ const props = withDefaults(
 	{
 		value: () => [],
 		layout: LAYOUTS.LIST,
-		tableSpacing: 'cozy',
+		tableSpacing: 'compact',
 		fields: () => ['id'],
 		template: () => null,
 		disabled: false,
