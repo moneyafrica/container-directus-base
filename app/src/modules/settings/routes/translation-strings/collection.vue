@@ -19,9 +19,11 @@
 		</template>
 
 		<template #sidebar>
+		  <!--
 			<sidebar-detail icon="info_outline" :title="t('information')" close>
 				<div v-md="t('page_help_settings_translation_strings_collection')" class="page-description" />
 			</sidebar-detail>
+			-->
 		</template>
 
 		<div class="translation-strings">

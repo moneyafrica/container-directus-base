@@ -19,9 +19,11 @@
 		</template>
 
 		<template #sidebar>
+		  <!--
 			<sidebar-detail icon="info_outline" :title="t('information')" close>
 				<div v-md="t('page_help_settings_roles_collection')" class="page-description" />
 			</sidebar-detail>
+			-->
 		</template>
 
 		<div class="roles">

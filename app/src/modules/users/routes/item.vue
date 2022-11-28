@@ -164,6 +164,7 @@
 		</v-dialog>
 
 		<template #sidebar>
+		  <!--
 			<user-info-sidebar-detail :is-new="isNew" :user="item" />
 			<revisions-drawer-detail
 				v-if="isBatch === false && isNew === false && revisionsAllowed"
@@ -177,6 +178,7 @@
 				collection="directus_users"
 				:primary-key="primaryKey"
 			/>
+			-->
 		</template>
 	</private-view>
 </template>

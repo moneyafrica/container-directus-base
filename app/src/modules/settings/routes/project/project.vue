@@ -22,7 +22,9 @@
 		</div>
 
 		<template #sidebar>
+		  <!--
 			<project-info-sidebar-detail />
+			-->
 		</template>
 
 		<v-dialog v-model="confirmLeave" @esc="confirmLeave = false">

@@ -7,13 +7,15 @@
 		:sidebar-label="t(currentTab[0])"
 		@cancel="router.push('/settings/data-model')"
 	>
-		<template #sidebar>
+	  <template #sidebar>
+	    <!--
 			<v-tabs v-model="currentTab" vertical>
 				<v-tab value="collection_setup">{{ t('collection_setup') }}</v-tab>
 				<v-tab value="optional_system_fields" :disabled="!collectionName">
 					{{ t('optional_system_fields') }}
 				</v-tab>
 			</v-tabs>
+			-->
 		</template>
 
 		<v-tabs-items v-model="currentTab" class="content">

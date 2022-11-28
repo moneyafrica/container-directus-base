@@ -80,11 +80,13 @@
 		</template>
 
 		<template #sidebar>
+		  <!--
 			<sidebar-detail icon="info_outline" :title="t('information')" close>
 				<div v-md="t('page_help_insights_dashboard')" class="page-description" />
 			</sidebar-detail>
 
 			<refresh-sidebar-detail v-model="refreshInterval" @refresh="insightsStore.refresh(primaryKey)" />
+			-->
 		</template>
 
 		<template #navigation>

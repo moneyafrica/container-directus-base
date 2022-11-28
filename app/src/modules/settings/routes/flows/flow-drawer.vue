@@ -8,13 +8,15 @@
 		@cancel="$emit('cancel')"
 		@esc="$emit('cancel')"
 	>
-		<template #sidebar>
+	  <template #sidebar>
+	    <!--
 			<v-tabs v-model="currentTab" vertical>
 				<v-tab value="flow_setup">{{ t('flow_setup') }}</v-tab>
 				<v-tab value="trigger_setup" :disabled="!values.name">
 					{{ t('trigger_setup') }}
 				</v-tab>
 			</v-tabs>
+			-->
 		</template>
 
 		<v-tabs-items v-model="currentTab" class="content">

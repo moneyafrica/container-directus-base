@@ -16,7 +16,9 @@
 		</div>
 
 		<template #sidebar>
+		  <!--
 			<role-info-sidebar-detail :role="null" />
+			-->
 		</template>
 	</private-view>
 </template>
