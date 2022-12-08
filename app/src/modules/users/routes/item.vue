@@ -164,6 +164,7 @@
 		</v-dialog>
 
 		<template #sidebar>
+                        <sidebar-detail icon="menu" :title="'Minimize'" close />
 		  <!--
 			<user-info-sidebar-detail :is-new="isNew" :user="item" />
 			<revisions-drawer-detail

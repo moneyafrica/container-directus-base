@@ -79,7 +79,6 @@
 			</component>
 
 			<template #sidebar>
-			  <!--
 				<sidebar-detail icon="info_outline" :title="t('information')" close>
 					<div v-md="t('page_help_settings_webhooks_collection')" class="page-description" />
 				</sidebar-detail>
@@ -87,7 +86,6 @@
 					<component :is="`layout-options-${layout}`" v-bind="layoutState" />
 				</layout-sidebar-detail>
 				<component :is="`layout-sidebar-${layout}`" v-bind="layoutState" />
-				-->
 			</template>
 		</private-view>
 	</component>

@@ -158,7 +158,6 @@
 			/>
 
 			<template #sidebar>
-			  <!--
 				<sidebar-detail icon="info_outline" :title="t('information')" close>
 					<div v-md="t('page_help_files_collection')" class="page-description" />
 				</sidebar-detail>
@@ -173,7 +172,6 @@
 					:search="search"
 					@refresh="refresh"
 				/>
-				-->
 			</template>
 
 			<template v-if="showDropEffect">

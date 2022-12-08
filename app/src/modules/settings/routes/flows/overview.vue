@@ -27,11 +27,9 @@
 		</template>
 
 		<template #sidebar>
-		  <!--
 			<sidebar-detail icon="info_outline" :title="t('information')" close>
 				<div v-md="t('page_help_settings_flows_collection')" class="page-description" />
 			</sidebar-detail>
-			-->
 		</template>
 
 		<v-info v-if="flows.length === 0" icon="bolt" :title="t('no_flows')" center>

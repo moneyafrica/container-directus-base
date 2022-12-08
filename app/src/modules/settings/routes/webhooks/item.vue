@@ -62,12 +62,10 @@
 		/>
 
 		<template #sidebar>
-		  <!--
 			<sidebar-detail icon="info_outline" :title="t('information')" close>
 				<div v-md="t('page_help_settings_webhooks_item')" class="page-description" />
 			</sidebar-detail>
 			<revisions-drawer-detail v-if="isNew === false" collection="directus_webhooks" :primary-key="primaryKey" />
-			-->
 		</template>
 
 		<v-dialog v-model="confirmLeave" @esc="confirmLeave = false">

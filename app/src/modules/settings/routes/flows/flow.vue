@@ -56,13 +56,11 @@
 		</template>
 
 		<template #sidebar>
-		  <!--
 			<sidebar-detail icon="info_outline" :title="t('information')" close>
 				<div v-md="t('page_help_settings_flows_item')" class="page-description" />
 			</sidebar-detail>
 
 			<logs-sidebar-detail :flow="flow" />
-			-->
 		</template>
 
 		<template #navigation>

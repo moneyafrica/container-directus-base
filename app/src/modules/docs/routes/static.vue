@@ -20,11 +20,9 @@
 		</div>
 
 		<template #sidebar>
-		  <!--
 			<sidebar-detail icon="info_outline" :title="t('information')" close>
 				<div v-md="t('page_help_docs_global')" class="page-description" />
 			</sidebar-detail>
-			-->
 		</template>
 	</private-view>
 </template>

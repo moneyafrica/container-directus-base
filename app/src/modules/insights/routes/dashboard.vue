@@ -80,7 +80,9 @@
 		</template>
 
 		<template #sidebar>
+			<sidebar-detail icon="menu" :title="'Minimize'" close />
 		  <!--
+                        <sidebar-detail :title="'Minimize'" close />
 			<sidebar-detail icon="info_outline" :title="t('information')" close>
 				<div v-md="t('page_help_insights_dashboard')" class="page-description" />
 			</sidebar-detail>

@@ -163,7 +163,6 @@
 		</v-dialog>
 
 		<template #sidebar>
-		  <!--
 			<file-info-sidebar-detail :file="item" />
 			<revisions-drawer-detail
 				v-if="isBatch === false && isNew === false && revisionsAllowed"
@@ -176,7 +175,6 @@
 				collection="directus_files"
 				:primary-key="primaryKey"
 			/>
-			-->
 		</template>
 
 		<replace-file v-model="replaceFileDialogActive" :file="item" @replaced="refresh" />

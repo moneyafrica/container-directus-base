@@ -90,7 +90,6 @@
 			</div>
 
 			<template #sidebar>
-			  <!--
 				<sidebar-detail icon="info_outline" :title="t('information')" close>
 					<div v-md="t('page_help_settings_presets_item')" class="page-description" />
 				</sidebar-detail>
@@ -112,7 +111,6 @@
 						</div>
 					</sidebar-detail>
 				</div>
-				-->
 			</template>
 
 			<v-dialog v-model="confirmLeave" @esc="confirmLeave = false">

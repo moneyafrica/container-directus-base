@@ -232,6 +232,7 @@
 			/>
 
 			<template #sidebar>
+				<sidebar-detail icon="menu" :title="'Minimize'" close />
 			        <!--
 				<sidebar-detail icon="info_outline" :title="t('information')" close>
 					<div
