@@ -164,8 +164,8 @@
 		</v-dialog>
 
 		<template #sidebar>
-                        <sidebar-detail icon="menu" :title="'Minimize'" close />
-		  <!--
+			<sidebar-detail icon="menu" :title="'Minimize'" close />
+			<!--
 			<user-info-sidebar-detail :is-new="isNew" :user="item" />
 			<revisions-drawer-detail
 				v-if="isBatch === false && isNew === false && revisionsAllowed"
@@ -212,7 +212,7 @@ import UserInfoSidebarDetail from '../components/user-info-sidebar-detail.vue';
 
 export default defineComponent({
 	name: 'UsersItem',
-	components: { UsersNavigation, RevisionsDrawerDetail, SaveOptions, CommentsSidebarDetail, UserInfoSidebarDetail },
+	components: { UsersNavigation }, //RevisionsDrawerDetail, SaveOptions, CommentsSidebarDetail, UserInfoSidebarDetail },
 	props: {
 		primaryKey: {
 			type: String,
@@ -307,8 +307,8 @@ export default defineComponent({
 
 		const fieldsFiltered = computed(() => {
 			return fields.value.filter((field: Field) => {
-				// These fields should only be editable when creating new users
-				if (!isNew.value && ['provider', 'external_identifier'].includes(field.field)) {
+				// These fields should only be editable when creating new users or by administrators
+				if (!isNew.value && ['provider', 'external_identifier'].includes(field.field) && !userStore.isAdmin) {
 					field.meta.readonly = true;
 				}
 				return !fieldsDenyList.includes(field.field);
@@ -460,8 +460,7 @@ export default defineComponent({
 			if (newLang && newLang !== locale.value) {
 				await setLanguage(newLang);
 
-				await fieldsStore.hydrate();
-				await collectionsStore.hydrate();
+				await Promise.all([fieldsStore.hydrate(), collectionsStore.hydrate()]);
 			}
 		}
 
