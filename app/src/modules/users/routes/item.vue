@@ -164,8 +164,6 @@
 		</v-dialog>
 
 		<template #sidebar>
-			<sidebar-detail icon="menu" :title="'Minimize'" close />
-			<!--
 			<user-info-sidebar-detail :is-new="isNew" :user="item" />
 			<revisions-drawer-detail
 				v-if="isBatch === false && isNew === false && revisionsAllowed"
@@ -179,7 +177,6 @@
 				collection="directus_users"
 				:primary-key="primaryKey"
 			/>
-			-->
 		</template>
 	</private-view>
 </template>
@@ -212,7 +209,7 @@ import UserInfoSidebarDetail from '../components/user-info-sidebar-detail.vue';
 
 export default defineComponent({
 	name: 'UsersItem',
-	components: { UsersNavigation }, //RevisionsDrawerDetail, SaveOptions, CommentsSidebarDetail, UserInfoSidebarDetail },
+	components: { UsersNavigation, RevisionsDrawerDetail, SaveOptions, CommentsSidebarDetail, UserInfoSidebarDetail },
 	props: {
 		primaryKey: {
 			type: String,
@@ -292,18 +289,7 @@ export default defineComponent({
 			usePermissions(ref('directus_users'), item, isNew);
 
 		// These fields will be shown in the sidebar instead
-		const fieldsDenyList = [
-			'id',
-			'external_id',
-			'last_page',
-			'created_on',
-			'created_by',
-			'modified_by',
-			'modified_on',
-			'last_access',
-			'description',
-			'tags',
-		];
+		const fieldsDenyList = ['id', 'last_page', 'created_on', 'created_by', 'modified_by', 'modified_on', 'last_access'];
 
 		const fieldsFiltered = computed(() => {
 			return fields.value.filter((field: Field) => {

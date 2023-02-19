@@ -232,8 +232,6 @@
 			/>
 
 			<template #sidebar>
-				<sidebar-detail icon="menu" :title="'Minimize'" close />
-				<!--
 				<sidebar-detail icon="info_outline" :title="t('information')" close>
 					<div
 						v-md="t('page_help_collections_collection', { collection: currentCollection.name })"
@@ -260,7 +258,6 @@
 					:selection="selection"
 					@refresh="batchRefresh"
 				/>
-				-->
 			</template>
 
 			<v-dialog :model-value="deleteError !== null">

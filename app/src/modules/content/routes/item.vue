@@ -175,12 +175,9 @@
 		</v-dialog>
 
 		<template #sidebar>
-			<sidebar-detail icon="menu" :title="'Minimize'" close />
-		        <!--
 			<sidebar-detail icon="info_outline" :title="t('information')" close>
 				<div v-md="t('page_help_collections_item')" class="page-description" />
 			</sidebar-detail>
-			-->
 			<revisions-drawer-detail
 				v-if="
 					isNew === false &&
@@ -200,7 +197,6 @@
 				:collection="collection"
 				:primary-key="internalPrimaryKey"
 			/>
-			<!--
 			<shares-sidebar-detail
 				v-if="isNew === false && loading === false && internalPrimaryKey"
 				:collection="collection"
@@ -215,7 +211,6 @@
 				:has-edits="hasEdits"
 				@refresh="refresh"
 			/>
-			-->
 		</template>
 	</private-view>
 </template>

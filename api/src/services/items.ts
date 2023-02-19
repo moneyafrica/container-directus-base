@@ -165,11 +165,11 @@ export class ItemsService<Item extends AnyItem = AnyItem> implements AbstractSer
 				primaryKey = result.id;
 				// Set the primary key on the input item, in order for the "after" event hook to be able
 				// to read from it
-				payloadAfterHooks[primaryKeyField] = primaryKey;
 				payload[primaryKeyField] = primaryKey;
 			}
 
 			const { revisions: revisionsO2M, nestedActionEvents: nestedActionEventsO2M } = await payloadService.processO2M(
+				//payload,
 				payloadAfterHooks,
 				primaryKey,
 				opts
@@ -207,8 +207,8 @@ export class ItemsService<Item extends AnyItem = AnyItem> implements AbstractSer
 						activity: activity,
 						collection: this.collection,
 						item: primaryKey,
-						data: await payloadService.prepareDelta(payloadAfterHooks),
-						delta: await payloadService.prepareDelta(payloadAfterHooks),
+						data: await payloadService.prepareDelta(payload),
+						delta: await payloadService.prepareDelta(payload),
 					});
 
 					// Make sure to set the parent field of the child-revision rows
@@ -580,6 +580,7 @@ export class ItemsService<Item extends AnyItem = AnyItem> implements AbstractSer
 
 			for (const key of keys) {
 				const { revisions, nestedActionEvents: nestedActionEventsO2M } = await payloadService.processO2M(
+					//payload,
 					payloadAfterHooks,
 					key,
 					opts

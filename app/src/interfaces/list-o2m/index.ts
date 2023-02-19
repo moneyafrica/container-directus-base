@@ -21,7 +21,7 @@ export default defineInterface({
 				field: 'tableSpacing',
 				name: '$t:layouts.tabular.spacing',
 				schema: {
-					default_value: 'compact',
+					default_value: 'cozy',
 				},
 				meta: {
 					interface: 'select-dropdown',

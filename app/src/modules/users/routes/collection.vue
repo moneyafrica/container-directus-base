@@ -142,8 +142,6 @@
 			/>
 
 			<template #sidebar>
-                                <sidebar-detail icon="menu" :title="'Minimize'" close />
-			  <!--
 				<sidebar-detail icon="info_outline" :title="t('information')" close>
 					<div v-md="t('page_help_users_collection')" class="page-description" />
 				</sidebar-detail>
@@ -158,7 +156,6 @@
 					:search="search"
 					@refresh="refresh"
 				/>
-				-->
 			</template>
 		</private-view>
 	</component>

@@ -25,12 +25,9 @@
 		</v-info>
 
 		<template #sidebar>
-			<sidebar-detail icon="menu" :title="'Minimize'" close />
-		  <!--
 			<sidebar-detail icon="info_outline" :title="t('information')" close>
 				<div v-md="t('page_help_collections_overview')" class="page-description" />
 			</sidebar-detail>
-			-->
 		</template>
 	</private-view>
 </template>

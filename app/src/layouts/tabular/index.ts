@@ -264,7 +264,7 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 				},
 			});
 
-			const tableSpacing = syncRefProperty(layoutOptions, 'spacing', 'compact');
+			const tableSpacing = syncRefProperty(layoutOptions, 'spacing', 'cozy');
 
 			const tableRowHeight = computed<number>(() => {
 				switch (tableSpacing.value) {
