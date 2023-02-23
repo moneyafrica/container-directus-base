@@ -1,6 +1,7 @@
 # README (M254)
 
-This repository contains the code necessary to build the base directus image.
+This repository contains the code necessary to build the base directus image that is used in the repository found here:
+https://github.com/moneyafrica/container-directus.
 
 To build the image, run the following:
 
@@ -9,6 +10,8 @@ bash build.sh
 ```
 
 # SOME ADDITIONAL COMMANDS
+
+To be documented properly.
 
 ```
 pnpm --filter directus dev
