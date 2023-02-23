@@ -314,9 +314,15 @@ function setValue(fieldKey: string, value: any, opts?: { force?: boolean }) {
 
 	if (opts?.force !== true && (!field || isDisabled(field))) return;
 
-	const edits = props.modelValue ? cloneDeep(props.modelValue) : {};
-	edits[fieldKey] = value;
-	emit('update:modelValue', edits);
+	if (fieldKey != 'setMultipleFields') {
+		const edits = props.modelValue ? cloneDeep(props.modelValue) : {};
+		edits[fieldKey] = value;
+		emit('update:modelValue', edits);
+	} else {
+		const edits = props.modelValue ? cloneDeep(props.modelValue) : {};
+		Object.keys(value).forEach((key) => (edits[key] = value[key]));
+		emit('update:modelValue', edits);
+	}
 }
 
 function apply(updates: { [field: string]: any }) {
