@@ -599,15 +599,11 @@ export class AuthorizationService {
 		else query.fields = ['*'];
 
 		if (Array.isArray(pk)) {
-			const result = await itemsService.readMany(
-				pk,
-				{ ...query, limit: pk.length },
-				{ permissionsAction: action, emitEvents: false }
-			);
+			const result = await itemsService.readMany(pk, { ...query, limit: pk.length }, { permissionsAction: action });
 			if (!result) throw new ForbiddenException();
 			if (result.length !== pk.length) throw new ForbiddenException();
 		} else {
-			const result = await itemsService.readOne(pk, query, { permissionsAction: action, emitEvents: false });
+			const result = await itemsService.readOne(pk, query, { permissionsAction: action });
 			if (!result) throw new ForbiddenException();
 		}
 	}
