@@ -580,7 +580,12 @@ export class AuthorizationService {
 		return payloadWithPresets;
 	}
 
-	async checkAccess(action: PermissionsAction, collection: string, pk: PrimaryKey | PrimaryKey[]): Promise<void> {
+	async checkAccess(
+		action: PermissionsAction,
+		collection: string,
+		pk: PrimaryKey | PrimaryKey[],
+		fields: string[] = []
+	): Promise<void> {
 		if (this.accountability?.admin === true) return;
 
 		const itemsService = new ItemsService(collection, {
@@ -589,16 +594,20 @@ export class AuthorizationService {
 			schema: this.schema,
 		});
 
-		const query: Query = {
-			fields: ['*'],
-		};
+		const query: Query = {};
+		if (fields.length > 0) query.fields = fields;
+		else query.fields = ['*'];
 
 		if (Array.isArray(pk)) {
-			const result = await itemsService.readMany(pk, { ...query, limit: pk.length }, { permissionsAction: action });
+			const result = await itemsService.readMany(
+				pk,
+				{ ...query, limit: pk.length },
+				{ permissionsAction: action, emitEvents: false }
+			);
 			if (!result) throw new ForbiddenException();
 			if (result.length !== pk.length) throw new ForbiddenException();
 		} else {
-			const result = await itemsService.readOne(pk, query, { permissionsAction: action });
+			const result = await itemsService.readOne(pk, query, { permissionsAction: action, emitEvents: false });
 			if (!result) throw new ForbiddenException();
 		}
 	}

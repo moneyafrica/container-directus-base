@@ -537,7 +537,7 @@ export class ItemsService<Item extends AnyItem = AnyItem> implements AbstractSer
 		keys.sort();
 
 		if (this.accountability) {
-			await authorizationService.checkAccess('update', this.collection, keys);
+			await authorizationService.checkAccess('update', this.collection, keys, Object.keys(payload));
 		}
 
 		const payloadWithPresets = this.accountability
