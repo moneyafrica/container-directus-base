@@ -88,10 +88,17 @@ ${comment}
 						.toString()}">Click here to view.</a>
 `;
 
+					let subject = `You were mentioned in ${data.collection}`;
+					if (data.collection == 'loan_applications' && data.action == 'comment') {
+						const loanApplicationItemsServiceInstance = new ItemsService('loan_applications', { schema: this.schema });
+						const application = await loanApplicationItemsServiceInstance.readOne(data.item);
+						subject = `You were mentioned in ${application.first_name} ${application.last_name}'s ${application.loan_category} Application`;
+					}
+
 					await this.notificationsService.createOne({
 						recipient: userID,
 						sender: sender.id,
-						subject: `You were mentioned in ${data.collection}`,
+						subject: subject,
 						message,
 						collection: data.collection,
 						item: data.item,
